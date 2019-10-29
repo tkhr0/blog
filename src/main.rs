@@ -4,11 +4,24 @@
 extern crate rocket;
 
 #[get("/")]
-fn index() -> &'static str {
-    "Hello, world!"
+fn top() -> String {
+  "Hello, world!".to_string()
+}
+
+#[get("/")]
+fn articles() -> String {
+  "article index".to_string()
+}
+
+#[get("/<id>")]
+fn article(id: usize) -> String {
+  format!("{}", id)
+}
+
 fn rocket() -> rocket::Rocket {
   rocket::ignite()
-    .mount("/", routes![index])
+    .mount("/", routes![top])
+    .mount("/articles", routes![articles, article])
 }
 
 fn main() {
