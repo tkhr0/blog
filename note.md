@@ -22,3 +22,12 @@ module にするときは module の中では src/lib.rs がトップレベル�
 ## rustfmt の設定
 `rustfmt.toml` or `.rustfmt.toml` で設定可能
 https://github.com/rust-lang/rustfmt
+
+## CircleCI
+CircleCI 公式 Docker イメージ
+[circleci/rust - Docker Hub](https://hub.docker.com/r/circleci/rust)
+
+clippy が入っていないので別途入れること
+
+rocket crate が `1.33.0-nightly` を minimum で要求しているので
+`rustup override set nightly` を叩く必要がある
