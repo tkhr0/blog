@@ -1,0 +1,24 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/rust:1.38.0-buster
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: rustup override set nightly
+
+      # TODO: restore dependencies cache
+
+      - run: rustup component add clippy
+
+      - run: cargo clippy
+
+      - run: cargo test --message-format human
+
+      # TODO: collect reports
+
+      # TODO: save dependencies cache
